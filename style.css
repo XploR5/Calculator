@@ -30,7 +30,16 @@ body {
   outline: none;
   font-size: 2rem;
   border: 1px solid white;
-  border-radius: 5px;
+  border-radius: 3px;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.multiSymbol {
+  color: #635994;
+  font-weight: bold;
 }
 
 .calc-grid > button:hover {
@@ -48,13 +57,20 @@ body {
   font-size: 2rem;
   text-align: right;
   padding: 1rem;
-  border-radius: 5px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  word-wrap: break-word;
+  word-break: break-all;
 }
 
-.circle1 {
-  min-width: 55px;
-  border-radius: 50%;
-  background-color: rgba(225, 225, 225, 0.75);
-  grid-column: 1 / 2;
-  grid-row: 2 / 3;
+.pre-Calc {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 225, 0.75);
+}
+
+.cur-Calc {
+  font-size: 2.5rem;
+  color: rgba(225, 225, 225, 1);
 }
