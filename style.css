@@ -20,15 +20,15 @@ body {
   align-content: center;
   justify-content: center;
   min-height: 100vh;
-  grid-template-columns: repeat(4, 100px);
-  grid-template-rows: minmax(125px, auto) repeat(5, 100px);
+  grid-template-columns: repeat(6, 65px);
+  grid-template-rows: minmax(125px, auto) repeat(5, 95px);
 }
 
 .calc-grid > button {
   cursor: pointer;
   background-color: rgba(225, 225, 225, 0.75);
   outline: none;
-  font-size: 2rem;
+  font-size: 1.5rem;
   border: 1px solid white;
   border-radius: 3px;
   z-index: 2;
@@ -37,7 +37,12 @@ body {
   align-items: center;
 }
 
-.multiSymbol {
+.number {
+  color: #21252b;
+  font-weight: bold;
+}
+
+.toStyle {
   color: #635994;
   font-weight: bold;
 }

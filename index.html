@@ -8,29 +8,39 @@
     <script src="app.js" defer></script>
     <title>Calculator</title>
   </head>
-  <body>
+  <body onload="zoom()">
     <div class="calc-grid">
       <div class="calc-output">
         <div data-pre-Calc class="pre-Calc">Pre_Calc</div>
         <div data-cur-Calc class="cur-Calc">Cur_Calc</div>
       </div>
       <button data-all-clear="" class="doubleSpan">❌</button>
+      <button data-operation="" class="toStyle">✳︎</button>
+      <button data-operation="" class="toStyle">^</button>
       <button data-delete="">🔙</button>
       <button data-operation="">➗</button>
-      <button data-number="">1</button>
-      <button data-number="">2</button>
-      <button data-number="">3</button>
-      <button data-operation="" class="multiSymbol">✳︎</button>
-      <button data-number="">4</button>
-      <button data-number="">5</button>
-      <button data-number="">6</button>
-      <button data-operation="">➕</button>
-      <button data-number="">7</button>
-      <button data-number="">8</button>
-      <button data-number="">9</button>
-      <button data-operation="">➖</button>
-      <button data-number="">.</button>
-      <button data-number="">0</button>
+      <button data-pre-operation="" class="toStyle">sin</button>
+      <button data-number-special="" class="toStyle">π</button>
+      <button data-number="" class="number">1</button>
+      <button data-number="" class="number">2</button>
+      <button data-number="" class="number">3</button>
+      <button data-operation="" class="toStyle">✳︎</button>
+      <button data-pre-operation="" class="toStyle">cos</button>
+      <button data-number-special="" class="toStyle">e</button>
+      <button data-number="" class="number">4</button>
+      <button data-number="" class="number">5</button>
+      <button data-number="" class="number">6</button>
+      <button data-operation="" class="toStyle">➕</button>
+      <button data-pre-operation="" class="toStyle">tan</button>
+      <button data-pre-operation="" class="toStyle">√</button>
+      <button data-number="" class="number">7</button>
+      <button data-number="" class="number">8</button>
+      <button data-number="" class="number">9</button>
+      <button data-operation="" class="toStyle">➖</button>
+      <button data-pre-operation="" class="toStyle">log</button>
+      <button data-operation="" class="toStyle">!</button>
+      <button data-number="" class="number">.</button>
+      <button data-number="" class="number">0</button>
       <button data-equals class="doubleSpan">➡️</button>
     </div>
   </body>

@@ -1,5 +1,9 @@
 console.log('Welcome to calculator app!')
 
+function zoom() {
+  document.body.style.zoom = '100%'
+}
+
 class Calculator {
   constructor(preCalcTextElement, curCalcTextElement) {
     this.preCalcTextElement = preCalcTextElement
@@ -23,22 +27,40 @@ class Calculator {
     this.curCalc = this.curCalc.toString() + number.toString()
   }
 
-  chooseOperation(operation) {
-    if (this.curCalc === '') return
+  chooseOperation(operation, type) {
+    if (this.curCalc === '' && type === 'normal') return
     if (this.preCalc !== '') {
-      this.compute()
+      this.compute(type)
     }
     this.operation = operation
     this.preCalc = this.curCalc.toString() + ' ' + this.operation.toString()
     this.curCalc = ''
   }
 
-  compute() {
+  compute(type) {
     let computation = 0
     const prev = parseFloat(this.preCalc)
     const current = parseFloat(this.curCalc)
 
-    if (isNaN(prev) || isNaN(current)) return
+    const factorial = (n) => {
+      if (n === 0 || n === 1) return 1
+      for (let i = n - 1; i >= 1; i--) {
+        n *= i
+      }
+      return n
+    }
+
+    // if (isNaN(prev) && type !== 'preOperation') return
+    if (isNaN(current)) {
+      if (this.operation === '!') {
+        this.curCalc = factorial(prev)
+        return
+      }
+      this.curCalc = prev
+      this.operation = undefined
+      this.preCalc = ''
+      return
+    }
 
     switch (this.operation) {
       case '➕':
@@ -53,22 +75,47 @@ class Calculator {
       case '➗':
         computation = prev / current
         break
+      case '^':
+        computation = Math.pow(prev, current)
+        break
+      case '!':
+        this.curCalc = factorial(prev)
+        break
+      case '√':
+        computation = Math.sqrt(current)
+        break
+      case 'sin':
+        computation = Math.sin(current)
+        break
+      case 'cos':
+        computation = Math.cos(current)
+        break
+      case 'tan':
+        computation = Math.tan(current)
+        break
+      case 'log':
+        computation = Math.log10(current)
+        break
       default:
         return
     }
-    this.curCalc = computation
+    this.curCalc = computation.toPrecision(5)
     this.operation = undefined
     this.preCalc = ''
   }
 
-  updateDisplay(number) {
+  updateDisplay() {
     this.curCalcTextElement.innerText = this.curCalc
     this.preCalcTextElement.innerText = this.preCalc
   }
 }
 
 const numberButtons = document.querySelectorAll('[data-number]')
+const specialNumberButtons = document.querySelectorAll('[data-number-special]')
+
 const operationButtons = document.querySelectorAll('[data-operation]')
+const preOperationButtons = document.querySelectorAll('[data-pre-operation]')
+
 const equalsButton = document.querySelector('[data-equals]')
 const deleteButton = document.querySelector('[data-delete]')
 const allClearButton = document.querySelector('[data-all-clear]')
@@ -85,9 +132,27 @@ numberButtons.forEach((button) => {
   })
 })
 
+specialNumberButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    calculator.appendNumber(
+      button.innerText === 'π'
+        ? Math.PI.toPrecision(10)
+        : Math.E.toPrecision(10)
+    )
+    calculator.updateDisplay()
+  })
+})
+
 operationButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    calculator.chooseOperation(button.innerText)
+    calculator.chooseOperation(button.innerText, 'normal')
+    calculator.updateDisplay()
+  })
+})
+
+preOperationButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    calculator.chooseOperation(button.innerText, 'preOperation')
     calculator.updateDisplay()
   })
 })
