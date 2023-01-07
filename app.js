@@ -111,7 +111,7 @@ class Calculator {
   }
 
   calculate() {
-    displayAnswer.innerText = eval(preCalculation.innerText)
+    displayAnswer.innerText = eval(preCalculation.innerText).toPrecision(5)
   }
 }
 
