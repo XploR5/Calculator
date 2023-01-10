@@ -57,6 +57,27 @@ class Calculator {
     this.preCalculation.innerText = this.preCalculation.innerText + input
   }
 
+  updateSimpleOperation(input) {
+    const lastChar = preCalculation.innerText.charAt(
+      preCalculation.innerText.length - 1
+    )
+
+    if (
+      lastChar === '+' ||
+      lastChar === '-' ||
+      lastChar === '*' ||
+      lastChar === '/' ||
+      lastChar === '.' ||
+      lastChar === 'π' ||
+      lastChar === 'e'
+    ) {
+      return
+      console.log('double')
+    }
+
+    this.preCalculation.innerText = this.preCalculation.innerText + input
+  }
+
   updateOperation(input) {
     switch (input) {
       case 'sin':
@@ -141,7 +162,7 @@ numberButtons.forEach((button) => {
 
 simpleOperationButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    calculator.updateNumber(button.innerText)
+    calculator.updateSimpleOperation(button.innerText)
   })
 })
 
@@ -199,19 +220,19 @@ document.addEventListener('keydown', (e) => {
       calculator.updateNumber('9')
       break
     case '+':
-      calculator.updateNumber('+')
+      calculator.updateSimpleOperation('+')
       break
     case '-':
-      calculator.updateNumber('-')
+      calculator.updateSimpleOperation('-')
       break
     case '*':
-      calculator.updateNumber('*')
+      calculator.updateSimpleOperation('*')
       break
     case '/':
-      calculator.updateNumber('/')
+      calculator.updateSimpleOperation('/')
       break
     case '.':
-      calculator.updateNumber('.')
+      calculator.updateSimpleOperation('.')
       break
     case '(':
       calculator.updateNumber('(')
@@ -250,22 +271,22 @@ document.addEventListener('keydown', (e) => {
       calculator.updateOperation('Cu')
       break
     case 'p':
-      calculator.updateOperation('pow')
+      calculator.updateSimpleOperation('pow')
       break
     case 'f':
-      calculator.updateOperation('!')
+      calculator.updateSimpleOperation('fac(')
       break
     case 'm':
-      calculator.updateNumber('%')
+      calculator.updateSimpleOperation('%')
       break
     case 'r':
-      calculator.updateOperation('√')
+      calculator.updateOperation('sqrt(')
       break
     case 'i':
-      calculator.updateOperation('π')
+      calculator.updateNumber('3.1415')
       break
     case 'e':
-      calculator.updateOperation('e')
+      calculator.updateNumber('2.7182')
       break
     default:
       return
