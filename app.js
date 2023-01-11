@@ -69,7 +69,8 @@ class Calculator {
       lastChar === '/' ||
       lastChar === '.' ||
       lastChar === 'π' ||
-      lastChar === 'e'
+      lastChar === 'e' ||
+      lastChar === ','
     ) {
       return
       console.log('double')
